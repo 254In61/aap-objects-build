@@ -40,13 +40,6 @@ Important notes
 
 
 
-Execution Environment
-===================== 
-job_execution_environment: "Control Plane Execution Environment" 
-
-Kept consitency on this one. This might change in the Ausgrid set-up. To be confirmed.
-
-
 Author
 ======
 Name: 254in61
