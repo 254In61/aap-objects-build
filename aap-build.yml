@@ -1,0 +1,39 @@
+---
+# Configure awx job templates and workflow
+# REF: https://www.redhat.com/en/blog/configuring-ansible-tower-tower-configuration-collection
+# To be run from a different machine with a direct connection to Ansible controller. Dev Server is a good place.
+# Step 1 : Install ansible tower collection : $ ansible-galaxy collection install redhat_cop.tower_configuration
+# Step 2 : Install awx.awx collection : $ ansible-galaxy collection install awx.awx
+# Step 3 : Update the group_vars/aap_vars.yml
+# Step 4 : Ensure the env variables are set too on your localhost..$ source env-vars
+
+
+- name: Playbook to configure AAP 
+  hosts: localhost
+  gather_facts: false
+  collections:
+    - awx.awx
+
+  tasks:
+    - name: include vars
+      include_vars:
+        dir: group_vars
+    
+    - import_tasks: modules/aap-organizations.yml
+
+    - import_tasks: modules/aap-credentials.yml
+
+    - import_tasks: modules/aap-projects.yml
+    
+    - import_tasks: modules/aap-inventory.yml
+
+    - import_tasks: modules/aap-hosts.yml
+    
+    - import_tasks: modules/aap-exec-env.yml
+
+    - import_tasks: modules/aap-job-templates.yml
+
+    #- import_tasks: modules/workflows.yml
+    # Many errors picked on the IAC. To be done manually after all J.T are confirmed to flow smoothly
+
+

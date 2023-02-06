@@ -1,0 +1,18 @@
+---
+# Define an execution environment that will be used for all subsequent runs
+# REF : https://docs.ansible.com/ansible/latest/collections/awx/awx/execution_environment_module.html
+# Having  commmon exec environment to be used across all the jobs gives me full control and predictability.
+
+# Default exec env in projects or upstream organization is used as a fallback when an execution environment 
+# has not been explicitly assigned at the job template or workflow level.
+
+- name: Add "{{ exec_env_name }}"to the controller instance
+  execution_environment:
+    name: "{{ exec_env_name }}"
+    image: "{{ podman_image_name }}"
+    description: "{{ podman_image_name }} based execution environment"
+    credential: "{{ docker_registry_creds }}"
+    validate_certs: false 
+    state: "present"
+    # organization: left blank so that it becomes Globally available.
+    pull:  "always" # Incase image is updated at source, to get the latest updates

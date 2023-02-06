@@ -1,0 +1,12 @@
+---
+# Module to build the inventory object
+# https://docs.ansible.com/ansible/latest/collections/awx/awx/inventory_module.html
+# NB! After this you will need to get into the inventory on GUI and populate it with hosts
+
+- name: Create inventory = {{ inventory_name }}
+  inventory:
+    name: "{{ inventory_name }}"
+    description: "{{ inventory_name }} inventory"
+    organization: "{{ organization_name }}"
+    state: present
+    #controller_config_file: "~/tower_cli.cfg"
