@@ -1,5 +1,6 @@
 ---
-# Building hosts
+# Reusable module
+
 # Creating a list of hosts that is to be used in the lab environment.
 # REF: https://docs.ansible.com/ansible/latest/collections/awx/awx/host_module.html
 # With a smart inventory, this will not be needed.

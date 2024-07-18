@@ -20,4 +20,4 @@
     inventory_name: "{{ linux_inventory_name }}"
 
 - name: Call build-inventory module
-  ansible.builtin.import_tasks: ../../../modules/build-inventory.yml
+  ansible.builtin.import_tasks: build-inventory.yml

@@ -1,6 +1,6 @@
 ---
-# Main 
+# Main
 - name: Build projects
-  ansible.builtin.import_tasks: project.yml
+  ansible.builtin.import_tasks: linux-project.yml
 
 

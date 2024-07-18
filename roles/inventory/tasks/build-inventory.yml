@@ -1,5 +1,5 @@
 ---
-# Reusable module to build inventory
+# Reusable module
 
 
 # https://docs.ansible.com/ansible/latest/collections/awx/awx/inventory_module.html

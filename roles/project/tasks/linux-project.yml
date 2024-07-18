@@ -24,4 +24,4 @@
      scm_credential: "{{ vcs_aap_credential_name }}"
 
 - name: Call build-project module
-  ansible.builtin.import_tasks: ../../../modules/build-project.yml
+  ansible.builtin.import_tasks: build-project.yml

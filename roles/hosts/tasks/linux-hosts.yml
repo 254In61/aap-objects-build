@@ -22,7 +22,7 @@
     inventory_name: "{{ linux_inventory_name }}"
 
 - name: Call build-hosts module
-  ansible.builtin.import_tasks: ../../../modules/build-hosts.yml
+  ansible.builtin.import_tasks: build-hosts.yml
 
 - name: Set variables for linux host creation
   ansible.builtin.set_fact:
@@ -30,4 +30,4 @@
     inventory_name: "{{ linux_inventory_name }}"
 
 - name: Call build-hosts module
-  ansible.builtin.import_tasks: ../../../modules/build-hosts.yml
+  ansible.builtin.import_tasks: build-hosts.yml
