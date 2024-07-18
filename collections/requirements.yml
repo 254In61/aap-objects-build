@@ -1,0 +1,10 @@
+---
+# Collections to be installed.
+
+collections:
+  - name: infra.controller_configuration
+  - name: awx.awx
+  - name: containers.podman
+  #- name: redhat_cop.tower_configuration # Older version
+  - name: ansible.controller
+    version: 4.5.6

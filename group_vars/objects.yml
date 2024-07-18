@@ -1,0 +1,35 @@
+---
+# Organization object name
+organization_name: panther
+
+# Execution environment object name
+exec_env_name: "{{ organization_name }}-aap-exec-env"
+
+
+# Credentials Objects Names
+devices_creds: "{{ organization_name }}-linux-lab-creds"
+docker_registry_creds: "{{ organization_name }}-docker-creds"    # Came in handy during dev and no access to PAH
+smtp_email_creds: "{{ organization_name }}-smtp-email-creds"
+source_control_creds: "{{ organization_name }}-azure-devops-creds" # In the dev environment, these are github credentials used
+pah_registry_creds: "{{ organization_name }}-pah-registry-creds" # Specific for the pah in Ausgrid
+
+
+# Projects Objects
+project_name: "{{ organization_name }}-linux-patch"
+project_scm_url: https://github.com/254In61/aap-workflow-lab  # To be changed to Azure
+project_scm_branch: main # Should always be dev!
+
+
+# Inventory object name
+inventory_name: "{{ organization_name }}-lab-demo-devices"
+
+# Container images
+podman_image_name: "docker.io/254in61/{{ organization_name }}-aap-exec-env:latest"
+
+# Devices serving as hosts ( Not needed if using smart inventory or bigger inventory )
+# Could be IP or resolvable FQDN
+lab_device_1: 192.168.1.100  # tough-guy
+lab_device_2: 192.168.1.101  # black-panther
+
+# Workflow 
+workflow_name: "{{ organization_name }}-workflow-linux-patch"

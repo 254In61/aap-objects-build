@@ -1,0 +1,43 @@
+---
+- name: Playbook to configure AAP 
+  hosts: localhost
+  gather_facts: false
+  collections:
+    - awx.awx
+
+  tasks:
+    - name: Include vars
+      ansible.builtin.include_vars:
+        dir: group_vars
+
+    - name: Import organisation role
+      ansible.builtin.import_role:
+        name: organization
+
+    - name: Import credential role
+      ansible.builtin.import_role:
+        name: credential
+    
+    - name: Import project role
+      ansible.builtin.import_role:
+        name: project
+    
+    # - name: Import inventory role
+    #   ansible.builtin.import_role:
+    #     name: inventory
+    
+    # - name: Import hosts role
+    #   ansible.builtin.import_role:
+    #     name: hosts
+    
+    # - name: Import exec-env role
+    #   ansible.builtin.import_role:
+    #     name: exec-env
+
+    # - name: Import job-template role
+    #   ansible.builtin.import_role:
+    #     name: job-template
+
+    # - name: Import workflow role
+    #   ansible.builtin.import_role:
+    #     name: workflow

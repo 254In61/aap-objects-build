@@ -1,0 +1,52 @@
+---
+# Workflows to happen here
+# https://docs.ansible.com/ansible/latest/collections/awx/awx/workflow_job_template_module.html
+
+# NB : Keep getting many errors, and no time to tshoot all of them. 
+# Workflow will be configured manually after all the job templates are confirmed to run smoothly.
+
+- name: Create a workflow job template with workflow nodes in template
+  awx.awx.workflow_job_template:
+    name: "{{ workflow_name }}"
+    # inventory: "{{ inventory_name }}"
+    organization: "{{ organization_name }}"
+    #extra_vars: {'foo': 'bar', 'another-foo': {'barz': 'bar2'}}
+    workflow_nodes:
+      # 1st job to run
+      - identifier: job101
+        execution_environment: "{{ exec_env_name }}" 
+        unified_job_template:
+          name: "job-{{ phase_1 }}"
+          description: "{{ phase_1 }} tasks job template"
+          inventory:
+            organization:
+              name: "{{ organization_name }}"
+          type: job_template
+        related:
+          success_nodes: [ job201 ]
+          failure_nodes: []
+          always_nodes: []
+          credentials: [ "{{ devices_creds }}", "{{ docker_registry_creds }}", "{{ smtp_email_creds }}", "{{ source_control_creds }}" ]
+
+      # 2nd job to run
+      # - identifier: job201
+      #   execution_environment: "{{ common_exec_env }}" 
+      #   unified_job_template:
+      #     name: "job-{{ phase_2 }}"
+      #     description: "{{ phase_2 }} tasks job template"
+      #     inventory:
+      #       organization:
+      #         name: "{{ organization_name }}"
+      #     type: job_template
+      #   related:
+      #     success_nodes: 
+      #       - job301
+      #     failure_nodes:
+      #       - job666
+      #     always_nodes: []
+      #     credentials:
+      #        - "{{ email_creds }}"
+      #        - "{{ docker_creds }}"
+      #        - "{{ inventory_creds }}"
+             
+  register: result

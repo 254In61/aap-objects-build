@@ -1,0 +1,8 @@
+---
+# Main 
+
+- name: Build inventory
+  ansible.builtin.import_tasks: build-inventory.yml
+
+
+

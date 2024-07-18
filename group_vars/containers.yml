@@ -1,0 +1,3 @@
+---
+# Container images
+podman_image_name: "docker.io/254in61/{{ organization_name }}-aap-exec-env:latest"

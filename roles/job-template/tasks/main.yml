@@ -1,0 +1,6 @@
+---
+# Main 
+- name: Build Job Templates
+  ansible.builtin.import_tasks: build-job-templates.yml
+
+
