@@ -22,13 +22,13 @@
       ansible.builtin.import_role:
         name: project
     
-    # - name: Import inventory role
-    #   ansible.builtin.import_role:
-    #     name: inventory
+    - name: Import inventory role
+      ansible.builtin.import_role:
+        name: inventory
     
-    # - name: Import hosts role
-    #   ansible.builtin.import_role:
-    #     name: hosts
+    - name: Import hosts role
+      ansible.builtin.import_role:
+        name: hosts
     
     # - name: Import exec-env role
     #   ansible.builtin.import_role:

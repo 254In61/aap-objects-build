@@ -1,0 +1,13 @@
+---
+# Organization object name
+organization_name: panther
+
+# Execution environment object name
+exec_env_name: "{{ organization_name }}-aap-exec-env"
+
+
+smtp_email_creds: "{{ organization_name }}-smtp-email-creds"
+
+
+# Workflow 
+workflow_name: "{{ organization_name }}-workflow-linux-patch"

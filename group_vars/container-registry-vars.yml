@@ -1,0 +1,17 @@
+---
+# Container registries
+
+# docker.io
+# Will not be needed once PAH is working and contains the AEE
+docker_aap_credential_name: docker-credential
+docker_aap_credential_type: Container Registry   
+docker_user: "{{ lookup('env', 'DOCKER_USER') }}"
+docker_password: "{{ lookup('env', 'DOCKER_ACCESS_TOKEN') }}"
+
+# Private Automation Hub (PAH)
+# source_control_creds: "{{ organization_name }}-azure-devops-creds" # In the dev environment, these are github credentials used
+# pah_registry_creds: "{{ organization_name }}-pah-registry-creds" # Specific for the pah in Ausgrid
+
+
+
+# redhat.io

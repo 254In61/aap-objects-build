@@ -2,15 +2,15 @@
 # Build the Project as part 2 of the playbook
 # REF: https://docs.ansible.com/ansible/latest/collections/awx/awx/project_module.html
 
-- name: Create project = {{ project_name }}
-  project:
+- name: "Create {{ project_name }} project"
+  ansible.controller.project:
     name: "{{ project_name }}"
-    description: "{{ project_name }} project creation"
+    description: "{{ project_name }} project"
     organization: "{{ organization_name }}"
     scm_type: "git"
-    scm_url: "{{ project_scm_url }}"
-    scm_branch: "{{ project_scm_branch }}"
-    scm_credential: "{{ source_control_creds }}"
+    scm_url: "{{ scm_url }}"
+    scm_branch: "{{ scm_branch }}"
+    scm_credential: "{{ scm_credential }}"
     scm_update_on_launch: true
     scm_update_cache_timeout: 60
     state: present
