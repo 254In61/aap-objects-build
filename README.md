@@ -10,6 +10,10 @@ Repository contains IAC(Infrastructure as code) that outomates the creation of a
 - notifications
 - workflows 
 
+## Design considerations
+- Resource objects creation separated into unique roles.
+- Ensures re-usability of the code and also makes it easy to unit-test each part of the code.
+
 ## collections
 
 - When Ansible runs a playbook, it looks for collections in a collections/ directory in the same directory as the playbook. 

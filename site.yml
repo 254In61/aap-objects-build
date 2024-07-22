@@ -10,33 +10,37 @@
       ansible.builtin.include_vars:
         dir: group_vars
 
-    - name: Import organisation role
+    - name: Build organization
       ansible.builtin.import_role:
         name: organization
 
-    - name: Import credential role
+    - name: Build credentials
       ansible.builtin.import_role:
         name: credential
     
-    - name: Import project role
+    - name: Build projects
       ansible.builtin.import_role:
         name: project
     
-    - name: Import inventory role
+    - name: Build inventories
       ansible.builtin.import_role:
         name: inventory
     
-    - name: Import hosts role
+    - name: Build hosts
       ansible.builtin.import_role:
         name: hosts
+
+    - name: Build groups
+      ansible.builtin.import_role:
+        name: groups
     
-    # - name: Import exec-env role
+    # - name: Build execution environment
     #   ansible.builtin.import_role:
     #     name: exec-env
 
-    # - name: Import job-template role
-    #   ansible.builtin.import_role:
-    #     name: job-template
+    - name: Build job-templates
+      ansible.builtin.import_role:
+        name: job-template
 
     # - name: Import workflow role
     #   ansible.builtin.import_role:

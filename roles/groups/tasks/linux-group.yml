@@ -1,0 +1,11 @@
+---
+# Creating a group
+
+- name: Set variables for linux group creation
+  ansible.builtin.set_fact:
+    group_name: "{{ linux_devices_group }}"
+    host_1: "{{ linux_lab_device_1 }}"
+    host_2: "{{ linux_lab_device_2 }}"
+
+- name: Call build-group module
+  ansible.builtin.import_tasks: build-group.yml

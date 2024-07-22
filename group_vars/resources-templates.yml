@@ -1,0 +1,18 @@
+---
+# vars for job templates
+
+# linux-env-checks
+# linux_env_check_job_name: linux-env-check
+linux_inventory: "{{ linux_inventory_name }}"
+linux_project_name: "{{ linux_env_aap_project_name }}"
+linux_env_check_playbook: site.yml
+linux_env_check_credential: "{{ linux_aap_credential_name }}"
+
+linux_env_phase_1_job: linux-env-pre-change-checks
+linux_env_phase_1_playbook: pre-change-checks.yml
+
+linux_env_phase_2_job: linux-env-execute-change
+linux_env_phase_2_playbook: execute-change.yml
+
+linux_env_phase_3_job: linux-env-post-change-checks
+linux_env_phase_3_playbook: post-change-checks.yml

@@ -1,9 +1,0 @@
----
-# Contains git variables.
-
-# github
-# Depends on what one uses. There could be gitlab, bitbuckt, AWS etc
-vcs_aap_credential_name: github-credential
-vcs_aap_credential_type: Source Control  
-vcs_user: "{{ lookup('env', 'GITHUB_USER') }}"
-vcs_password: "{{ lookup('env', 'GITHUB_ACCESS_TOKEN') }}"

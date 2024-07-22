@@ -16,7 +16,7 @@
 #     state: present
 #     #controller_config_file: "~/tower_cli.cfg"
 
-- name: Set fact for linux-env-check-project creation
+- name: "Set fact for {{ linux_env_aap_project_name }} creation"
   ansible.builtin.set_fact:
      project_name: "{{ linux_env_aap_project_name }}"
      scm_url: "{{ linux_env_aap_project_scm_url }}"

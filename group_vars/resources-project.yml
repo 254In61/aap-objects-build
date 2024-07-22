@@ -1,0 +1,9 @@
+---
+# Project variables
+
+# linux-env-project
+linux_env_aap_project_name: linux-servers-patching
+linux_env_aap_project_scm_url: https://github.com/254In61/aap-workflow-linux-os  # To be changed to Azure
+linux_env_aap_project_scm_branch: develop
+
+

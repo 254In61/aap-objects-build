@@ -7,6 +7,6 @@
 - name: Create organization = {{ organization_name }} 
   ansible.controller.organization:
     name: "{{ organization_name }}"
-    description: "{{ organization_name }} organization build"
+    description: "{{ aap_objects_build_repo }}"
     state: present
 

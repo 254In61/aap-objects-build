@@ -1,27 +1,22 @@
 ---
-# Module to create job templates
+# Re-usable module.
+# To add job templates? :
+# 1) define them in the group_vars/job-templates-vars.yml
+# 2) Feed the variables as set_facts
 
 - name: Create job templates
-  job_template:
-    name: "job-{{ item }}"
+  ansible.controller.job_template:
+    name: "job-{{ name }}"
     job_type: "run"
-    description: "{{ item }} job template"
-    organization: "{{ organization_name }}"
-    inventory: "{{ inventory_name }}"
-    project: "{{ project_name }}"
-    playbook: "unit-{{ item }}.yml"
-    credentials: "{{ devices_creds }}"
+    description: "{{ aap_objects_build_repo }}"
+    organization: "{{ organization }}"
+    inventory: "{{ inventory }}"
+    project: "{{ project }}"
+    playbook: "{{ playbook }}"
+    credentials: "{{ credential }}"
     state: "present"
-    execution_environment: "{{ exec_env_name }}"
+    execution_environment: "{{ aap_exec_env_name }}"
     timeout: 60
-    
-  loop:
-    - "{{ phase_1 }}"
-    - "{{ phase_2 }}"
-    - "{{ phase_3 }}"
-    - "{{ phase_4 }}"
-    - "{{ phase_5 }}"
-    #- "{{ phase_666 }}"
 
 # Possible errors
 # failed: [localhost] (item=pre-change-checks) => {"ansible_loop_var": "item", "changed": false, "item": "pre-change-checks", "msg": "Unable to update job_template job-pre-change-checks, see response", "response": {"json": {"playbook": ["Playbook not found for project."]}, "status_code": 400}}

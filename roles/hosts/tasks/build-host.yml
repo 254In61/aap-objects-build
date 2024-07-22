@@ -8,9 +8,10 @@
 - name: Adding hosts
   ansible.controller.host:
     name: "{{ host_id }}"
-    description: "Host in {{ inventory_name }}"
+    description: "{{ aap_objects_build_repo }}"
     inventory: "{{ inventory_name }}"
     state: present
+    enabled: true
     # controller_config_file: "~/tower_cli.cfg"
     # variables:
       # example_var: 123

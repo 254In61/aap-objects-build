@@ -1,9 +1,0 @@
----
-# Project variables
-
-# linux-env-project
-linux_env_aap_project_name: linux-env-check-project
-linux_env_aap_project_scm_url: https://github.com/254In61/linux-env-check  # To be changed to Azure
-linux_env_aap_project_scm_branch: develop
-
-

@@ -2,12 +2,12 @@
 # Organization object name
 organization_name: panther
 
-# Execution environment object name
-exec_env_name: "{{ organization_name }}-aap-exec-env"
+# Execution environment details
+aap_exec_env_build_repo : https://github.com/254In61/aap-exec-env
+# aap_exec_env_name: aap-exec-env ## Faced issues of AAP not handing over credentials and hosts to the AEE.
+aap_exec_env_name: default-exec-env ## Renamed it from the loooong "Default execution environment"
 
+aap_exec_env_image: "docker.io/254in61/aap-exec-env:latest"
 
-smtp_email_creds: "{{ organization_name }}-smtp-email-creds"
-
-
-# Workflow 
-workflow_name: "{{ organization_name }}-workflow-linux-patch"
+# aap-object-build repository
+aap_objects_build_repo: https://github.com/254In61/aap-objects-build

@@ -6,12 +6,12 @@
 # Default exec env in projects or upstream organization is used as a fallback when an execution environment 
 # has not been explicitly assigned at the job template or workflow level.
 
-- name: Add "{{ exec_env_name }}"to the controller instance
-  execution_environment:
-    name: "{{ exec_env_name }}"
-    image: "{{ podman_image_name }}"
-    description: "{{ podman_image_name }} based execution environment"
-    credential: "{{ docker_registry_creds }}"
+- name: "Add {{ aap_exec_env_name }} to the aap"
+  ansible.controller.execution_environment:
+    name: "{{ aap_exec_env_name }}"
+    image: "{{ aap_exec_env_image }}"
+    description: "{{ aap_exec_env_build_repo }}"
+    credential: "{{ container_registry_credential_name }}"
     validate_certs: false 
     state: "present"
     # organization: left blank so that it becomes Globally available.

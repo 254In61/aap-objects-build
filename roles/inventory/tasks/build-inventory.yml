@@ -11,7 +11,7 @@
 - name: "Create inventory = {{ inventory_name }}"
   ansible.controller.inventory:
     name: "{{ inventory_name }}"
-    description: "{{ inventory_name }} inventory"
+    description: "{{ aap_objects_build_repo }}"
     organization: "{{ organization_name }}"
     state: present
     #controller_config_file: "~/tower_cli.cfg"
