@@ -1,0 +1,15 @@
+---
+# Creating a group
+# This is for small scale inventory. In large prod, dynamic inventory is the way to go.
+- name: "Create Linux Group - {{ linux_devices_group }}"
+  ansible.controller.group:
+    name: "{{ linux_devices_group }}"
+    description: "{{ aap_objects_build_repo }}"
+    inventory: "{{ linux_inventory_name  }}"
+    hosts:
+      - "{{ linux_lab_device_1 }}"
+      - "{{ linux_lab_device_2 }}"
+    # children:
+    #   - NewYork
+    preserve_existing_hosts: True
+    preserve_existing_children: True

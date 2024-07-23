@@ -1,0 +1,4 @@
+---
+# Workflow templates
+linux_env_workflow_name: linux_env_patching
+linux_change_approval_node_name: linux-change-approval

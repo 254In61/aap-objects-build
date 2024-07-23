@@ -1,27 +1,16 @@
 ---
-# Build the Project as part 2 of the playbook
-# REF: https://docs.ansible.com/ansible/latest/collections/awx/awx/project_module.html
+# Build the linux project
 
-# - name: Create project {{ linux_env_project }}
-#   ansible.controller.project:
-#     name: "{{ linux_env_project }}"
-#     description: "{{ linux_env_project }} project creation"
-#     organization: "{{ organization_name }}"
-#     scm_type: "git"
-#     scm_url: "{{ linux_env_project_scm_url }}"
-#     scm_branch: "{{ linux_env_project_scm_branch }}"
-#     scm_credential: "{{ source_control_creds }}"
-#     scm_update_on_launch: true
-#     scm_update_cache_timeout: 60
-#     state: present
-#     #controller_config_file: "~/tower_cli.cfg"
-
-- name: "Set fact for {{ linux_env_aap_project_name }} creation"
-  ansible.builtin.set_fact:
-     project_name: "{{ linux_env_aap_project_name }}"
-     scm_url: "{{ linux_env_aap_project_scm_url }}"
-     scm_branch: "{{ linux_env_aap_project_scm_branch }}"
-     scm_credential: "{{ vcs_aap_credential_name }}"
-
-- name: Call build-project module
-  ansible.builtin.import_tasks: build-project.yml
+- name: "Create {{ linux_env_aap_project_name }} project"
+  ansible.controller.project:
+    name: "{{ linux_env_aap_project_name }}"
+    description: "{{ aap_objects_build_repo }}"
+    organization: "{{ organization_name }}"
+    scm_type: "git"
+    scm_url: "{{ linux_env_aap_project_scm_url }}"
+    scm_branch: "{{ linux_env_aap_project_scm_branch }}"
+    scm_credential: "{{ vcs_aap_credential_name }}"
+    scm_update_on_launch: true     # Perform an update to the local repository before launching a job with this project.
+    scm_update_cache_timeout: 60
+    state: present
+    #controller_config_file: "~/tower_cli.cfg"

@@ -1,18 +1,14 @@
 ---
 # Creating a list of hosts that is to be used in the lab environment.
+# With a smart inventory, this will not be needed.
 
-- name: Set variables for linux host creation
-  ansible.builtin.set_fact:
-    host_id: "{{ linux_lab_device_1 }}"
-    inventory_name: "{{ linux_inventory_name }}"
-
-- name: Call build-hosts module
-  ansible.builtin.import_tasks: build-host.yml
-
-- name: Set variables for linux host creation
-  ansible.builtin.set_fact:
-    host_id: "{{ linux_lab_device_2 }}"
-    inventory_name: "{{ linux_inventory_name }}"
-
-- name: Call build-hosts module
-  ansible.builtin.import_tasks: build-host.yml
+- name: Adding hosts
+  ansible.controller.host:
+    name: "{{ item }}"
+    description: "{{ aap_objects_build_repo }}"
+    inventory: "{{ linux_inventory_name }}"
+    state: present
+    enabled: true
+  loop: 
+    - "{{ linux_lab_device_1 }}"
+    - "{{ linux_lab_device_2 }}"

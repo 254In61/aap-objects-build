@@ -1,0 +1,64 @@
+---
+# stitching the job-templates into a workflow
+# 
+- name: Create workflow job template for "{{ linux_env_workflow_name }}"
+  awx.awx.workflow_job_template:
+    name: "{{ linux_env_workflow_name }}"
+    inventory: "{{ linux_inventory_name }}"
+    organization: "{{ organization_name }}"
+    state: present
+    description: "{{ aap_objects_build_repo }}"
+  register: linux_workflow 
+
+# Create workflow nodes
+- name: Create workflow nodes 
+  awx.awx.workflow_job_template_node:
+    workflow: "{{ linux_workflow.id }}"
+    identifier: "{{ item }}"
+    organization: "{{ organization_name }}"
+    unified_job_template: "job-{{ item }}"
+    state: present
+  loop:
+    - "{{ linux_env_phase_1 }}"
+    - "{{ linux_env_phase_2 }}"
+    - "{{ linux_env_phase_3 }}"
+
+- name: "Create {{ linux_change_approval_node_name }} approval node"
+  awx.awx.workflow_job_template_node:
+    workflow: "{{ linux_workflow.id }}"
+    identifier: "{{ linux_change_approval_node_name }}"
+    organization: "{{ organization_name }}"
+    state: present
+    approval_node:
+        description: "Proceed with change?"
+        name: "{{ linux_change_approval_node_name }}"
+        timeout: 3600 # The amount of time (in seconds) before the approval node expires and fails.
+
+# Stitch job templates into a workflow
+
+- name: "Link job-{{ linux_env_phase_1 }} workflow node to {{ linux_change_approval_node_name }} node"
+  awx.awx.workflow_job_template_node:
+    workflow: "{{ linux_workflow.id }}"
+    identifier: "{{ linux_env_phase_1 }}"
+    organization: "{{ organization_name }}"
+    success_nodes: 
+      - "{{ linux_change_approval_node_name }}"  # When successful moves to this
+
+- name: "Link {{ linux_change_approval_node_name }} node to {{ linux_env_phase_2 }} node"
+  awx.awx.workflow_job_template_node:
+    workflow: "{{ linux_workflow.id }}"
+    identifier: "{{ linux_change_approval_node_name }}"
+    organization: "{{ organization_name }}"
+    success_nodes: 
+      - "{{ linux_env_phase_2 }}" # When successful moves to this
+
+- name: "Link {{ linux_env_phase_2 }} node to {{ linux_env_phase_3 }} node"
+  awx.awx.workflow_job_template_node:
+    workflow: "{{ linux_workflow.id }}"
+    identifier: "{{ linux_env_phase_2 }}"
+    organization: "{{ organization_name }}"
+    success_nodes: 
+      - "{{ linux_env_phase_3 }}" # When successful moves to this
+  
+# Should I think of kick-starting this automatically?
+# Not in the scope for now :)

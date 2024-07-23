@@ -1,23 +1,10 @@
 ---
-# Module to build the inventory object
-# https://docs.ansible.com/ansible/latest/collections/awx/awx/inventory_module.html
-# NB! After this you will need to get into the inventory on GUI and populate it with hosts
+# Build linux devices inventory
+# Approach will be very different with dynamic/smart inventory
 
-
-## How do we build a smart inventory??
-
-# - name: Create inventory = {{ inventory_name }}
-#   inventory:
-#     name: "{{ inventory_name }}"
-#     description: "{{ inventory_name }} inventory"
-#     organization: "{{ organization_name }}"
-#     state: present
-#     #controller_config_file: "~/tower_cli.cfg"
-
-
-- name: Set variables for the inventory module
-  ansible.builtin.set_fact:
-    inventory_name: "{{ linux_inventory_name }}"
-
-- name: Call build-inventory module
-  ansible.builtin.import_tasks: build-inventory.yml
+- name: "Create inventory = {{ linux_inventory_name  }}"
+  ansible.controller.inventory:
+    name: "{{ linux_inventory_name }}"
+    description: "{{ aap_objects_build_repo }}"
+    organization: "{{ organization_name }}"
+    state: present

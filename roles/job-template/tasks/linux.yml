@@ -1,38 +1,20 @@
 ---
-# Build linux-env-check job template
+# Create job templates for Linux
 
-# These variables are common
-- name: "Set variables for linux-env-management job templates" 
-  ansible.builtin.set_fact:
+- name: Create job templates
+  ansible.controller.job_template:
+    name: "job-{{ item }}"
+    job_type: "run"
+    description: "{{ aap_objects_build_repo }}"
     organization: "{{ organization_name }}"
     inventory: "{{ linux_inventory }}"
     project: "{{ linux_project_name }}"
-    credential: "{{ linux_aap_credential_name }}"
-
-
-# Implete phase 1 job template
-- name: "Set variables for {{ linux_env_phase_1_job }} job" 
-  ansible.builtin.set_fact:
-    name: "{{ linux_env_phase_1_job }}"
-    playbook: "{{ linux_env_phase_1_playbook }}"
-
-- name: Call build-job-template module
-  ansible.builtin.import_tasks: build-job-template.yml
-
-# Implete phase 2 job template
-- name: "Set variables for {{ linux_env_phase_2_job }} job" 
-  ansible.builtin.set_fact:
-    name: "{{ linux_env_phase_2_job }}"
-    playbook: "{{ linux_env_phase_2_playbook }}"
-
-- name: Call build-job-template module
-  ansible.builtin.import_tasks: build-job-template.yml
-
-# Implete phase 3 job template
-- name: "Set variables for {{ linux_env_phase_3_job }} job" 
-  ansible.builtin.set_fact:
-    name: "{{ linux_env_phase_3_job }}"
-    playbook: "{{ linux_env_phase_3_playbook }}"
-
-- name: Call build-job-template module
-  ansible.builtin.import_tasks: build-job-template.yml
+    playbook: "{{ item }}.yml"
+    credentials: "{{ linux_aap_credential_name }}"
+    state: "present"
+    execution_environment: "{{ aap_exec_env_name }}"
+    timeout: 60
+  loop:
+    - "{{ linux_env_phase_1 }}"
+    - "{{ linux_env_phase_2 }}"
+    - "{{ linux_env_phase_3 }}"

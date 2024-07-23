@@ -1,6 +1,5 @@
 ---
 # Main 
-
 - name: Build linux-devices inventory
   ansible.builtin.import_tasks: linux-inventory.yml
 

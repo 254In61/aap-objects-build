@@ -1,0 +1,14 @@
+---
+# vars for job templates
+
+# linux-env-checks
+# linux_env_check_job_name: linux-env-check
+# Using this nomenclature.. Allows cisco-, f5-,juniper- and more
+linux_inventory: "{{ linux_inventory_name }}"
+linux_project_name: "{{ linux_env_aap_project_name }}"
+linux_env_check_playbook: site.yml
+linux_env_check_credential: "{{ linux_aap_credential_name }}"
+
+linux_env_phase_1: linux-pre-change-checks
+linux_env_phase_2: linux-execute-change
+linux_env_phase_3: linux-post-change-checks
