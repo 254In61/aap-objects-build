@@ -7,3 +7,7 @@ linux_env_aap_project_scm_url: https://github.com/254In61/aap-workflow-linux-os 
 linux_env_aap_project_scm_branch: develop
 
 
+# aws ec2 project
+aws_aap_project_name: aws-infra-patching
+aws_aap_project_scm_url: https://github.com/254In61/aap-workflow-linux-os  # To be changed to Azure
+aws_aap_project_scm_branch: develop

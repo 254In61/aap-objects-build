@@ -1,5 +1,19 @@
 ---
-# Creating a group
+# Creating a list of hosts that is to be used in the lab environment.
+# With a smart inventory, this will not be needed.
+
+- name: Adding hosts
+  ansible.controller.host:
+    name: "{{ item }}"
+    description: "{{ aap_objects_build_repo }}"
+    inventory: "{{ linux_inventory_name }}"
+    state: present
+    enabled: true
+  loop: 
+    - "{{ linux_lab_device_1 }}"
+    - "{{ linux_lab_device_2 }}"
+
+# Creating a group for the hosts above
 # This is for small scale inventory. In large prod, dynamic inventory is the way to go.
 - name: "Create Linux Group - {{ linux_devices_group }}"
   ansible.controller.group:

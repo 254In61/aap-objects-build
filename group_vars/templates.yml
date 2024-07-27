@@ -1,0 +1,9 @@
+---
+# vars for job templates
+linux_env_phase_1: linux-pre-change-checks
+linux_env_phase_2: linux-execute-change
+linux_env_phase_3: linux-post-change-checks
+
+# Workflow templates
+linux_env_workflow_name: linux_env_patching
+linux_change_approval_node_name: linux-change-approval

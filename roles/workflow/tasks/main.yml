@@ -1,7 +1,0 @@
----
-# Main 
-- name: Build workflow
-  ansible.builtin.import_tasks: linux.yml
-
-
-

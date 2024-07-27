@@ -1,14 +1,14 @@
 ---
 # Create job templates for Linux
-
+# Enables unittesting by running one job at a time, before running workflow as end-to-end
 - name: Create job templates
   ansible.controller.job_template:
     name: "job-{{ item }}"
     job_type: "run"
     description: "{{ aap_objects_build_repo }}"
     organization: "{{ organization_name }}"
-    inventory: "{{ linux_inventory }}"
-    project: "{{ linux_project_name }}"
+    inventory: "{{ linux_inventory_name }}"
+    project: "{{ linux_env_aap_project_name }}"
     playbook: "{{ item }}.yml"
     credentials: "{{ linux_aap_credential_name }}"
     state: "present"

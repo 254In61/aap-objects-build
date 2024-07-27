@@ -1,0 +1,20 @@
+---
+# Create job templates for aws checks
+
+- name: Create job templates for aws checks
+  ansible.controller.job_template:
+    name: "job-{{ item }}"
+    job_type: "run"
+    description: "{{ aap_objects_build_repo }}"
+    organization: "{{ organization_name }}"
+    inventory: "{{ aws_ec2_inventory_name }}"
+    project: "{{ aws_aap_project_name }}"
+    playbook: "{{ item }}.yml"
+    credentials: "{{ aws_credential_name }}"
+    state: "present"
+    execution_environment: "{{ aap_exec_env_name }}"
+    timeout: 60
+  loop:
+    - "{{ aws_env_phase_1 }}"
+    - "{{ aws_env_phase_2 }}"
+    - "{{ aws_env_phase_3 }}"

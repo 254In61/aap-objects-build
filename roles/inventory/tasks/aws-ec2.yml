@@ -1,0 +1,25 @@
+---
+# Build aws ec2 inventory
+# This builds a dynamic inventory that is sourced from aws ec2
+
+- name: "Create inventory = {{ aws_ec2_inventory_name  }}"
+  ansible.controller.inventory:
+    name: "{{ aws_ec2_inventory_name }}"
+    description: "{{ aap_objects_build_repo }}"
+    organization: "{{ organization_name }}"
+    state: present
+
+# Inventory has to be sourced from somewhere.
+# In this case it will be the AWS EC2s console.
+- name: "Add {{ aws_ec2_inventory_source }}"
+  ansible.controller.inventory_source:
+    name: "{{ aws_ec2_inventory_source }}"
+    description: "{{ aap_objects_build_repo }}"
+    inventory: "{{ aws_ec2_inventory_name }}"
+    credential: "{{ aws_credential_name }}"
+    overwrite: True
+    update_on_launch: True
+    organization: "{{ organization_name }}"
+    source: ec2
+    source_vars:
+      private: false

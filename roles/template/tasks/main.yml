@@ -1,0 +1,10 @@
+---
+# Main 
+- name: Build linux-servers management job Templates
+  ansible.builtin.import_tasks: linux-job-template.yml
+
+- name: Build linux-servers management workflow Templates
+  ansible.builtin.import_tasks: linux-workflow-template.yml
+
+# - name: Build aws infra job Templates
+#   ansible.builtin.import_tasks: aws.yml

@@ -46,7 +46,7 @@ Step 6 : Run the playbook :$ ansible-playbook site.yml
 
 ## Important notes
 
-- This code is fixed to building of 5 job templates mentioned. If you want more, consider editing the modules/job_templates.yml file.
+- This code is fixed to building of 3 job templates mentioned. If you want more, consider editing the modules/job_templates.yml file.
 
 - The playbooks/modules are all found in the modules/ directory.
 
