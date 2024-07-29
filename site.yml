@@ -5,35 +5,45 @@
   collections:
     - awx.awx
 
-  tasks:
+  pre_tasks:
     - name: Include vars
       ansible.builtin.include_vars:
         dir: group_vars
 
-    - name: Build organization
-      ansible.builtin.import_role:
-        name: organization
+  roles:
+    - role: organization
+    - role: credential
+    - role: project
+    - role: inventory
+    - role: host
+    #- role: exec-env
+    - role: template
 
-    - name: Build credentials
-      ansible.builtin.import_role:
-        name: credential
-    
-    - name: Build projects
-      ansible.builtin.import_role:
-        name: project
-    
-    - name: Build inventories
-      ansible.builtin.import_role:
-        name: inventory
 
-    - name: Build hosts
-      ansible.builtin.import_role:
-        name: host
+  post_tasks:
+    - name: Debug out results
+      ansible.builtin.debug:
+        msg:
+          - "Organization created : {{ organization_name }}"
+          - "Project created : {{ linux_env_aap_project_name }}"
+          - "Credentials created"
+          - "Inventory created"
+          - "Job and workflow templates created"
     
-    # - name: Build execution environment
-    #   ansible.builtin.import_role:
-    #     name: exec-env
+    # - name: Enabling Nagios for this host
+    #   community.general.nagios:
+    #     action: enable_alerts
+    #     host: "{{ inventory_hostname }}"
+    #     services: http
+    #   delegate_to: nagios-srv
 
-    - name: Build job-templates
-      ansible.builtin.import_role:
-        name: template
+  # handlers:
+  #   # Future development
+  #   # Send a message to the support team through Slack
+  #   # every time the memcached service is restarted.
+  #   - name: Notifying the support team
+  #     community.general.slack:
+  #       token: G922VJP25/D923DW937/3Ffe373sfhRE6y52Fg3rvf5GlK
+  #       msg: 'Memcached on {{ inventory_hostname }} restarted'
+  #     delegate_to: localhost
+  #     become: false
